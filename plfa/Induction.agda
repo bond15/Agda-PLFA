@@ -52,3 +52,4 @@ open import Data.Nat using (ℕ; zero; suc; _+_; _*_; _∸_)
 +-comm' : ∀ (m n : ℕ) -> m + n ≡ n + m
 +-comm' m zero rewrite +-zlemma m = refl
 +-comm' m (suc n) rewrite +-succ m n | +-comm' m n = refl
+‌
