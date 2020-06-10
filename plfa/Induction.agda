@@ -22,6 +22,11 @@ open import Data.Nat using (ℕ; zero; suc; _+_; _*_; _∸_)
     -- suc (m + (n + p))
   -- ∎
 
+-- Using rewrite instead
++-assoc' : ∀ (m n p : ℕ) -> (m + n) + p ≡ m + (n + p)
++-assoc' zero n p = refl
++-assoc' (suc m) n p  rewrite +-assoc' m n p = refl
+
 +-zlemma : ∀ (n : ℕ) -> n + 0 ≡ n
 +-zlemma zero = refl
 +-zlemma (suc m) = cong suc (+-zlemma m)
@@ -42,3 +47,8 @@ open import Data.Nat using (ℕ; zero; suc; _+_; _*_; _∸_)
   ≡⟨⟩
     suc n + m
   ∎
+
+-- + comm using rewrite
++-comm' : ∀ (m n : ℕ) -> m + n ≡ n + m
++-comm' m zero rewrite +-zlemma m = refl
++-comm' m (suc n) rewrite +-succ m n | +-comm' m n = refl
