@@ -8,6 +8,10 @@ open Eq.≡-Reasoning using (begin_; _≡⟨⟩_; _∎)
 data ℕ : Set where
   z : ℕ
   s : ℕ -> ℕ
+
+
+
+  
 {-# BUILTIN NATURAL ℕ #-}
 
 _+_ : ℕ -> ℕ -> ℕ

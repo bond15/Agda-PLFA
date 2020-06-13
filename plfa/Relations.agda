@@ -98,6 +98,9 @@ data Total (m n : ℕ) : Set where
 --  helper (forward m≤n) = forward (s≤s m≤n)
 --  helper (flipped n≤m) = flipped (s≤s n≤m)
 
-
+--≤-monotonic : ∀ {m n p q} -> m ≤ n -> p ≤ q -> m + p ≤ n + q
+--≤-monotonic z≤n z≤n = z≤n
+--≤-monotonic z≤n _ = {!   !}
+--≤-monotonic _ _ = {!   !}
 
 --
