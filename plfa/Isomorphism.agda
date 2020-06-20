@@ -179,3 +179,41 @@ open _≲_
 
 -- Embegginds are reflexive, transitive, and anti-symmetric
 -- Can also do equational reazoning with embeddings
+
+
+
+-- equivalence of propositions - iff
+-- \iff
+record _⇔_ (A B : Set) : Set where
+  field
+    to : A -> B
+    from : B -> A
+-- show that this is an equivalence
+
+⇔-refl : ∀ (A : Set)
+  -----
+  -> A ⇔ A
+⇔-refl A = record
+  { to = λ{a -> a}
+  ; from = λ{a -> a}
+  }
+
+⇔-sym : ∀ {A B : Set}
+  -> A ⇔ B
+  --------
+  -> B ⇔ A
+⇔-sym A⇔B = record
+  { to = _⇔_.from A⇔B
+  ; from = _⇔_.to A⇔B
+  }
+
+⇔-trans : ∀ {A B C : Set}
+  -> A ⇔ B
+  -> B ⇔ C
+  --------
+  -> A ⇔ C
+
+⇔-trans A⇔B B⇔C = record
+  { to = (_⇔_.to B⇔C)∘(_⇔_.to A⇔B)
+  ; from = (_⇔_.from A⇔B)∘(_⇔_.from B⇔C)
+  }
