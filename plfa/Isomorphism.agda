@@ -226,7 +226,7 @@ contr : ∀ (a : Unit) -> a ≡ unit
 contr = λ { unit -> refl }
 
 data isUnit : Unit -> Unit -> Set where
-  tt : ∀ { a : Unit } -> isUnit unit unit
+  isunit : isUnit unit unit
 
 record Equiv-relation (A : Set) (R : A -> A -> Set) : Set₃ where
   field
@@ -236,7 +236,7 @@ record Equiv-relation (A : Set) (R : A -> A -> Set) : Set₃ where
 
 _ : Equiv-relation Unit isUnit
 _ = record
-  { r-refl = λ { unit -> tt }
-  ; r-sym = λ { unit unit _ -> tt }
-  ; r-trans = λ { unit unit unit _ _ -> tt }
+  { r-refl = λ { unit -> isunit }
+  ; r-sym = λ { unit unit _ -> isunit }
+  ; r-trans = λ { unit unit unit _ _ -> isunit }
   }
