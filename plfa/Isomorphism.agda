@@ -217,3 +217,26 @@ record _⇔_ (A B : Set) : Set where
   { to = (_⇔_.to B⇔C)∘(_⇔_.to A⇔B)
   ; from = (_⇔_.from A⇔B)∘(_⇔_.from B⇔C)
   }
+
+data Unit : Set where
+  unit : Unit
+
+
+contr : ∀ (a : Unit) -> a ≡ unit
+contr = λ { unit -> refl }
+
+data isUnit : Unit -> Unit -> Set where
+  tt : ∀ { a : Unit } -> isUnit unit unit
+
+record Equiv-relation (A : Set) (R : A -> A -> Set) : Set₃ where
+  field
+    r-refl : ∀ (a : A) -> R a a
+    r-sym : ∀ (a a' : A) -> R a a' -> R a' a
+    r-trans : ∀ (a a' a'' : A) -> R a a' -> R a' a'' -> R a a''
+
+_ : Equiv-relation Unit isUnit
+_ = record
+  { r-refl = λ { unit -> tt }
+  ; r-sym = λ { unit unit _ -> tt }
+  ; r-trans = λ { unit unit unit _ _ -> tt }
+  }
