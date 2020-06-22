@@ -183,6 +183,7 @@ identity a = a
 η-→ : ∀ {A B : Set} (f : A -> B) -> (λ (x : A) -> f x) ≡ f
 η-→ f = refl
 
+-- p ^ n ^ m = p ^ (n * m)
 currying : ∀ {A B C : Set} -> (A -> B -> C) ≃ (A x B -> C)
 currying = record
   { to = λ f -> λ axb -> (f (π₁ axb) (π₂ axb))
